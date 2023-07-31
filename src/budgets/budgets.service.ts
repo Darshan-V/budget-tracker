@@ -2,6 +2,7 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { BudgetDto } from './dto/budget.dto';
+import { updateDto } from './dto/update.dto';
 import { Budgets } from './entities/budgets.entity';
 
 @Injectable()
@@ -28,9 +29,9 @@ export class BudgetsService {
     return budget;
   }
 
-  // async update(id: number, budgetDto: BudgetDto) {
-  //   return this.budgetsRepository.update(id, budgetDto);
-  // }
+  async update(id: number, UpdateDto: updateDto) {
+    return this.budgetsRepository.update(id, UpdateDto);
+  }
 
   async remove(id: number): Promise<void> {
     const budget = await this.findOne(id);
