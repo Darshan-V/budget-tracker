@@ -9,6 +9,7 @@ import {
 } from '@nestjs/common';
 import { BudgetsService } from './budgets.service';
 import { BudgetDto } from './dto/budget.dto';
+import { updateDto } from './dto/update.dto';
 
 @Controller('budgets')
 export class BudgetsController {
@@ -29,10 +30,10 @@ export class BudgetsController {
     return this.budgetsService.findOne(id);
   }
 
-  // @Put(':id')
-  // update(@Param('id') id: number, @Body('category') category: string) {
-  //   return this.budgetsService.update(id, category);
-  // }
+  @Put(':id')
+  update(@Param('id') id: number, @Body() UpdateDto: updateDto) {
+    return this.budgetsService.update(id, UpdateDto);
+  }
 
   @Delete(':id')
   remove(@Param('id') id: number) {
