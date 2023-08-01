@@ -5,6 +5,7 @@ import { UsersModule } from './users/users.module';
 import { CategoriesModule } from './categories/categories.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Budgets } from './budgets/entities/budgets.entity';
+import { CategoryGroups } from './category-groups/entities/category-groups.entity';
 
 @Module({
   imports: [
@@ -14,7 +15,7 @@ import { Budgets } from './budgets/entities/budgets.entity';
       port: 5432,
       username: 'postgres',
       database: 'budget_tracker',
-      entities: [Budgets],
+      entities: [Budgets, CategoryGroups],
       // synchronize: true,
     }),
     BudgetsModule,
