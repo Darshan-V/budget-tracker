@@ -12,7 +12,8 @@ export class BudgetsService {
     private budgetsRepository: Repository<Budgets>,
   ) {}
   async create(budgetDto: BudgetDto): Promise<Budgets> {
-    return this.budgetsRepository.create(budgetDto);
+    const budget = this.budgetsRepository.create(budgetDto);
+    return this.budgetsRepository.save(budget);
   }
 
   async findAll(): Promise<Budgets[]> {
