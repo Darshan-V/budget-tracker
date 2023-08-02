@@ -1,6 +1,12 @@
-import { PartialType } from '@nestjs/mapped-types';
-import { CreateCategoryGroupDto } from './create-category-group.dto';
+import { Column } from 'typeorm';
 
-export class UpdateCategoryGroupDto extends PartialType(
-  CreateCategoryGroupDto,
-) {}
+export class UpdateCategoryGroupDto {
+  @Column()
+  budget_id: number;
+
+  @Column()
+  type: string;
+
+  @Column()
+  name: string;
+}
