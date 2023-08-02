@@ -9,5 +9,5 @@ export class Budgets {
   category: string;
 
   @Column()
-  budget_id: number;
+  user_id: number;
 }
