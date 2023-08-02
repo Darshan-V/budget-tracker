@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateCategoryGroupDto } from './dto/create-category-group.dto';
 import { UpdateCategoryGroupDto } from './dto/update-category-group.dto';
 import { CategoryGroups } from './entities/category-groups.entity';
@@ -20,18 +20,25 @@ export class CategoryGroupsService {
   }
 
   async findAll() {
-    return `This action returns all categoryGroups`;
+    return this.categoryGroupRepository.find();
   }
 
   async findOne(id: number) {
-    return `This action returns a #${id} categoryGroup`;
+    const group = await this.categoryGroupRepository.findOne({
+      where: { id },
+    });
+    if (!group) {
+      throw new NotFoundException(`budget with ID ${id} not found`);
+    }
+    return group;
   }
 
   async update(id: number, updateCategoryGroupDto: UpdateCategoryGroupDto) {
-    return `This action updates a #${id} categoryGroup`;
+    return this.categoryGroupRepository.update(id, updateCategoryGroupDto);
   }
 
-  async remove(id: number) {
-    return `This action removes a #${id} categoryGroup`;
+  async remove(id: number): Promise<void> {
+    const group = await this.findOne(id);
+    await this.categoryGroupRepository.remove(group);
   }
 }
