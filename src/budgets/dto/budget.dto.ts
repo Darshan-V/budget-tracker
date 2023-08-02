@@ -2,7 +2,7 @@ import { Column } from 'typeorm';
 
 export class BudgetDto {
   @Column()
-  budet_id: number;
+  user_id: number;
 
   @Column()
   category: string;
