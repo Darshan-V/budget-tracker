@@ -28,7 +28,7 @@ export class CategoryGroupsService {
       where: { id },
     });
     if (!group) {
-      throw new NotFoundException(`budget with ID ${id} not found`);
+      throw new NotFoundException(`group with ID ${id} not found`);
     }
     return group;
   }
